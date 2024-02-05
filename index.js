@@ -37,6 +37,8 @@ pool.query(insertQuery);
 // const updateQuery = `UPDATE student SET name = 'Rajnath Singh', phone = '8756975755' WHERE id = 7`
 // pool.query(updateQuery);
 
+const deleteQuert = `DELETE FROM student WHERE id = 19`;
+pool.query(deleteQuert)
 
 app.set('view engine', 'ejs');
 app.use(express.static('./public'));
