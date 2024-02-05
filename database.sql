@@ -13,4 +13,24 @@ INSERT INTO student (name,phone) VALUES ('   ', 0),
  ('Akshay Khanna', 4587588914)
  ('Raj kumar',4478578495 )
  ('Priyanka Chopra', 7788445511)
- ('', )
+
+ ('Romal Bhui', 8847458745),
+ ('Donal Trump', 748984517),
+ ('Joe Biden', 7488847584),
+ ('Amram Linkan', 5547874874),
+ ('Xi Jinping', 7484898541 ),
+ ('Narendra Modi', 4457818756 ),
+ ('Lalbahabur Sahstri', 4414788845),
+ ('Mamta Banerjee', 1147848574 ),
+ ('Joti Basu', 4785471575),
+ ('Sunil Gorai', 6748745451),
+ ('Mithu Gorai',8874845841 ),
+ ('Sankari Gorai', 7748484582 ),
+ ('Bikah Mondal', 9856874512 ),
+ ('Sourabh Saha', 6658748451 ),
+ ('John Smith', 5587458956 ),
+ ('Amir Khan', 9874512589 ),
+
+('Presanjit Chaterjee',4845157845)
+('Gourab Banerjee',775197845)
+('Amitv Bachan ', 4415788745)
