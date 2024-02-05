@@ -1,10 +1,17 @@
 import express from 'express';
+import ejs from 'ejs';
 
 const app = express();
-const PORT = 7788;
+const PORT = 3000;
+
+app.set('view engine', 'ejs');
+
 
 app.get('/', function (req, res) {
     res.send('Express JS Server');
+});
+app.get('/ejs', (req, res) => {
+    res.render('index');
 });
 
 
