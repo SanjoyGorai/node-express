@@ -4,6 +4,9 @@ const PORT = 3000;
 import pg from 'pg';
 const { Pool } = pg;
 const app = express();
+app.listen(PORT, () => {
+    console.log(`Express server listening on port http://localhost:${PORT}`);
+});
 const pool = new Pool({
     host: 'localhost',
     port: 5432,
@@ -12,14 +15,28 @@ const pool = new Pool({
     password: 'sanjoypql'
 });
 
-pool.connect((error)=>{
+pool.connect((error) => {
     if (error) {
         console.log(error);
     }
     console.log("Postgres connected successfully");
 })
 
-// const result = pool.query('SELECT * FROM postgres')
+const selectQuery = 'SELECT * FROM student'
+const results = await pool.query(selectQuery);
+console.log(results.rows);
+
+const insertQuery = `INSERT INTO student (name,phone) VALUES
+('Sanjoy Dutta', 5874896874 ),
+ ('Akshay Khanna', 4587588914),
+ ('Raj kumar',4478578495 ),
+ ('Priyanka Chopra', 7788445511)
+`
+pool.query(insertQuery);
+
+// const updateQuery = `UPDATE student SET name = 'Rajnath Singh', phone = '8756975755' WHERE id = 7`
+// pool.query(updateQuery);
+
 
 app.set('view engine', 'ejs');
 app.use(express.static('./public'));
@@ -37,6 +54,3 @@ app.get('/images', (req, res) => {
 });
 
 
-app.listen(PORT, () => {
-    console.log(`Express server listening on port http://localhost:${PORT}`);
-});
