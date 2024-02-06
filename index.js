@@ -4,7 +4,7 @@ const PORT = 3000;
 import pg from 'pg';
 const { Pool } = pg;
 const app = express();
-import getProducts from './routers/products.js';
+import getProducts, { getProductFun } from './routers/products.js';
 
 app.listen(PORT, () => {
     console.log(`Express server listening on port http://localhost:${PORT}`);
@@ -115,4 +115,4 @@ app.get('/ejs', (req, res) => {
 app.get('/images', (req, res) => {
 });
 
-app.use('/products', getProducts);
+app.use('/products', getProductFun);

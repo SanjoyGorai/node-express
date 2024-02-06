@@ -1,9 +1,12 @@
 import express from 'express';
+import productController from '../controllers/product.js';
 
-const app = express.Router();
+const router = express.Router();
 
-const getProducts = app.get('/api', (req, res) => {
+const getProducts = router.get('/api/v1', (req, res) => {
     res.send('Sanjoy Gorai..')
 })
+
+export const getProductFun = router.get('/api', productController);
 
 export default getProducts;
