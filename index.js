@@ -24,13 +24,14 @@ pool.connect((error) => {
 
 const selectQuery = 'SELECT * FROM student'
 const results = await pool.query(selectQuery);
-console.log(results.rows);
+console.log(results.rows[0]);
 
 const insertQuery = `INSERT INTO student (name,phone) VALUES
-('Sanjoy Dutta', 5874896874 ),
- ('Akshay Khanna', 4587588914),
- ('Raj kumar',4478578495 ),
- ('Priyanka Chopra', 7788445511)
+('Goutam Goswmi', 7484784584),
+('Somnath Kor', 9874512546),
+('Somnath Saha', 4777856984),
+('Subhajit Kumbhaker', 4455778895),
+('Amitab Chakrabarti', 4555147845)
   `
 // pool.query(insertQuery);
 
@@ -47,7 +48,7 @@ app.use(cors());
 
 
 app.get('/students', (req, res) => {
-    res.send(results.rows)
+    res.send(results.rows[0])
 })
 
 //find student by id
@@ -55,21 +56,24 @@ app.get('/students/:id', async (req, res) => {
     const id = req.params.id;
     const selectQuery = `SELECT * FROM student WHERE id = ${id}`;
     const results = await pool.query(selectQuery);
-    res.send(results.rows)
+    // res.send(results.rows)
 });
 
-app.get('/students/names/?name=John Doe', (req, res) => {
-    const name = req.params.name;
-    const nameQuery = `SELECT * FROM student WHERE name = ${name}`;
-    res.send(nameQuery.rows)
+app.get('/api/students', async (req, res) => {
+    const id = req.query.id;
+    // const nameQuery = `SELECT * FROM student `;
+    const nameQuery = `SELECT * FROM student WHERE id = ${id}`;
+    const search = await pool.query(nameQuery)
+    res.send(search.rows);
+    console.log(req.query.id);
 })
 
 app.put('/students', async (req, res) => {
     const insertQuery = `INSERT INTO student (name,phone) values
     ('Presanjit Chaterjee',4845157845),
     ('Amitv Bachan ', 4415788745)    `
-    const insert = await pool.query(insertQuery);
-    res.send(insert)
+    // const insert = await pool.query(insertQuery);
+    // res.send(insert)
 });
 
 app.get('/', function (req, res) {

@@ -34,3 +34,11 @@ INSERT INTO student (name,phone) VALUES ('   ', 0),
 ('Presanjit Chaterjee',4845157845)
 ('Gourab Banerjee',775197845)
 ('Amitv Bachan ', 4415788745)
+
+('Goutam Goswmi', 7484784584),
+('Somnath Kor', 9874512546),
+('Somnath Saha', 4777856984),
+('Subhajit Kumbhaker', 4455778895)
+('Amitab Chakrabarti', 4555147845),
+
+
