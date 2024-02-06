@@ -61,11 +61,25 @@ app.get('/students/:id', async (req, res) => {
 
 app.get('/api/students', async (req, res) => {
     const id = req.query.id;
-    // const nameQuery = `SELECT * FROM student `;
-    const nameQuery = `SELECT * FROM student WHERE id = ${id}`;
-    const search = await pool.query(nameQuery)
-    res.send(search.rows);
-    console.log(req.query.id);
+    if (req.query.id != null) {
+        try {
+            // const nameQuery = `SELECT * FROM student `;
+            const nameQuery = `SELECT * FROM student WHERE id = ${id}`;
+            const search = await pool.query(nameQuery)
+            res.send(search.rows);
+            console.log(req.query.id);
+        } catch (error) {
+            console.log(error);
+        }
+    } else {
+        try {
+            const nameQuery = `SELECT * FROM student `;
+            const search = await pool.query(nameQuery)
+            res.send(search.rows)
+        } catch (error) {
+            console.log(error);
+        }
+    }
 })
 
 app.put('/students', async (req, res) => {
