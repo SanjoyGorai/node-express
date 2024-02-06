@@ -5,6 +5,7 @@ import pg from 'pg';
 const { Pool } = pg;
 const app = express();
 import getProducts, { getProductFun } from './routers/products.js';
+import { selectQuery as select } from './sql-queries/query.js';
 
 app.listen(PORT, () => {
     console.log(`Express server listening on port http://localhost:${PORT}`);
@@ -49,8 +50,10 @@ app.use(express.static('./public'));
 app.use(cors());
 
 
-app.get('/students', (req, res) => {
-    res.send(results.rows[0])
+app.get('/students', async (req, res) => {
+    const results = await pool.query(select)
+    res.send(results.rows)
+    console.log("Select Result", results.rows[0]);
 })
 
 //find student by id
