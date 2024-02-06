@@ -42,3 +42,23 @@ INSERT INTO student (name,phone) VALUES ('   ', 0),
 ('Amitab Chakrabarti', 4555147845),
 
 
+// Product table 
+
+CREATE TABLE products (
+  id SERIAL PRIMARY KEY,
+  image bytea NOT NULL,
+  title VARCHAR(255) NOT NULL,
+  price NUMERIC NOT NULL
+);
+
+INSERT INTO products(image, title, price) 
+VALUES(bytea_import('C:\\Users\Sanjoy\Desktop\mobile.png'), 'Iqoo Mobile', 25000)
+
+
+
+CREATE TABLE images (id SERIAL PRIMARY KEY,image blob NOT NULL);
+
+INSERT INTO images(image) 
+VALUES(LOAD_FILE('C:\\Users\Sanjoy\Desktop\mobile.png')
+
+()

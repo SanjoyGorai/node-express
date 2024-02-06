@@ -4,6 +4,8 @@ const PORT = 3000;
 import pg from 'pg';
 const { Pool } = pg;
 const app = express();
+import getProducts from './routers/products.js';
+
 app.listen(PORT, () => {
     console.log(`Express server listening on port http://localhost:${PORT}`);
 });
@@ -59,6 +61,19 @@ app.get('/students/:id', async (req, res) => {
     // res.send(results.rows)
 });
 
+app.get('/api/students/names', (req, res) => {
+    const name = req.query.name;
+    if (name != null) {
+        const selectName = `SELECT * FROM student WHERE name = ${name}`;
+        const results = pool.query(selectName);
+        req.send(results.rows);
+        console.log(req.query.name);
+    } else {
+        res.send("No name parameter provided")
+    }
+});
+
+// ()
 app.get('/api/students', async (req, res) => {
     const id = req.query.id;
     if (req.query.id != null) {
@@ -100,4 +115,4 @@ app.get('/ejs', (req, res) => {
 app.get('/images', (req, res) => {
 });
 
-
+app.use('/products', getProducts);
