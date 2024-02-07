@@ -119,3 +119,21 @@ app.get('/images', (req, res) => {
 });
 
 app.use('/products', getProductFun);
+
+export const insertUsers = `INSERT INTO users (username, password) 
+VALUES ('Joe Biden', 'joebiden8745')`
+
+app.post('/users', (req, res) => {
+    const results = pool.query(insertUsers);
+    res.send('Success: ')
+});
+
+app.get('/users', async (req, res) => {
+    const selectUser = 'select * from users;'
+    const users = await pool.query(selectUser)
+    console.log('Users Data: ', users.rows);
+    res.send(users.rows)
+});
+
+
+// ()

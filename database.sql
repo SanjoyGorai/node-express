@@ -62,3 +62,8 @@ INSERT INTO images(image)
 VALUES(LOAD_FILE('C:\\Users\Sanjoy\Desktop\mobile.png')
 
 ()
+
+CREATE TABLE users (id SERIAL PRIMARY KEY, username TEXT, password VARCHAR(255) );
+INSERT INTO users (username, password) VALUES ('JohnDoe1234', 'john1234');
+('Sanjoy Gorai', 12345678)
+('Harry Porter', 'hary4125')
