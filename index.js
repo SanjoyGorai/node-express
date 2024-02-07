@@ -128,29 +128,23 @@ const someOtherPlaintextPassword = 'not_bacon';
 
 export const insertUserss = `INSERT INTO users (username, password) 
 VALUES ('sdsssd', 'justin425')`
-const hashPassword =async  (password) => {
+const hashPassword = async (password) => {
     return bcrypt.hash(password, saltRounds)
 }
 console.log('Salted Password is :', await hashPassword('sanjoy100'));
 
 
-bcrypt.genSalt(saltRounds, (err, salt) => {
-    bcrypt.hash(myPlaintextPassword, salt, (err, salt) => {
-
-    })
-});
-
-const insertUser = (username, password) => {
-    const hashedPassword = hashPassword(password)
+const insertUser = async (username, password) => {
+    const hashedPassword = await hashPassword(password)
     const query = `INSERT INTO users (username, password) 
-VALUES ('sdsssd', 'justin425')`
-
-
+    VALUES ($1, $2)`
+    const values = [username, hashedPassword];
+    const client = pool.query(query, values);
 }
 
 app.post('/users', (req, res) => {
     // const results = pool.query(insertUserss);
-    insertUser('Sanjoy Singh', 'sanjoy100')
+    insertUser('Ravi', 'ravi55')
     res.send('Success: ')
 });
 
