@@ -7,6 +7,7 @@ const app = express();
 import getProducts, { getProductFun } from './routers/products.js';
 import { insertUsersQuery, selectQuery as select } from './sql-queries/query.js';
 import bcrypt from 'bcrypt';
+import fs from 'fs'
 
 app.listen(PORT, () => {
     console.log(`Express server listening on port http://localhost:${PORT}`);
@@ -29,6 +30,33 @@ pool.connect((error) => {
 const selectQuery = 'SELECT * FROM student'
 const results = await pool.query(selectQuery);
 console.log(results.rows[0]);
+
+const imagepath = 'C:/Users/Sanjoy/Desktop/mobile.png';
+
+app.post('/image/', (req, res) => {
+    fs.readFile(imagepath, (err, data) => {
+        if (data) {
+            console.log('Image found');
+            res.send('Image found')
+        }
+        if (err) {
+            console.error('Error reading image file:', err);
+            return
+        }
+        const query = 'INSERT INTO images (image_data) VALUES ($1)';
+        const values = [data];
+        pool.query(query, values, (err, result) => {
+            if (err) {
+                console.error('Error inserting image into the database:', err);
+                return
+            } else {
+                console.log('Image inserted successfully!');
+                pool.end()
+            }
+        })
+
+    })
+})
 
 const insertQuery = `INSERT INTO student (name,phone) VALUES
 ('Goutam Goswmi', 7484784584),
