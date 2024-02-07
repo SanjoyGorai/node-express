@@ -5,7 +5,8 @@ import pg from 'pg';
 const { Pool } = pg;
 const app = express();
 import getProducts, { getProductFun } from './routers/products.js';
-import { selectQuery as select } from './sql-queries/query.js';
+import { insertUsers, selectQuery as select } from './sql-queries/query.js';
+import bcrypt from 'bcrypt';
 
 app.listen(PORT, () => {
     console.log(`Express server listening on port http://localhost:${PORT}`);
@@ -120,11 +121,36 @@ app.get('/images', (req, res) => {
 
 app.use('/products', getProductFun);
 
-export const insertUsers = `INSERT INTO users (username, password) 
-VALUES ('Joe Biden', 'joebiden8745')`
+
+const saltRounds = 10;
+const myPlaintextPassword = 's0/\/\P4$$w0rD';
+const someOtherPlaintextPassword = 'not_bacon';
+
+export const insertUserss = `INSERT INTO users (username, password) 
+VALUES ('sdsssd', 'justin425')`
+const hashPassword =async  (password) => {
+    return bcrypt.hash(password, saltRounds)
+}
+console.log('Salted Password is :', await hashPassword('sanjoy100'));
+
+
+bcrypt.genSalt(saltRounds, (err, salt) => {
+    bcrypt.hash(myPlaintextPassword, salt, (err, salt) => {
+
+    })
+});
+
+const insertUser = (username, password) => {
+    const hashedPassword = hashPassword(password)
+    const query = `INSERT INTO users (username, password) 
+VALUES ('sdsssd', 'justin425')`
+
+
+}
 
 app.post('/users', (req, res) => {
-    const results = pool.query(insertUsers);
+    // const results = pool.query(insertUserss);
+    insertUser('Sanjoy Singh', 'sanjoy100')
     res.send('Success: ')
 });
 
