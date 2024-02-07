@@ -5,7 +5,7 @@ import pg from 'pg';
 const { Pool } = pg;
 const app = express();
 import getProducts, { getProductFun } from './routers/products.js';
-import { insertUsers, selectQuery as select } from './sql-queries/query.js';
+import { insertUsersQuery, selectQuery as select } from './sql-queries/query.js';
 import bcrypt from 'bcrypt';
 
 app.listen(PORT, () => {
@@ -136,15 +136,16 @@ console.log('Salted Password is :', await hashPassword('sanjoy100'));
 
 const insertUser = async (username, password) => {
     const hashedPassword = await hashPassword(password)
-    const query = `INSERT INTO users (username, password) 
-    VALUES ($1, $2)`
+    const query = insertUsersQuery
+    //  `INSERT INTO users (username, password) 
+    // VALUES ($1, $2)`
     const values = [username, hashedPassword];
     const client = pool.query(query, values);
 }
 
 app.post('/users', (req, res) => {
     // const results = pool.query(insertUserss);
-    insertUser('Ravi', 'ravi55')
+    insertUser('Arjun Ranawat', 'arjun44')
     res.send('Success: ')
 });
 
@@ -157,3 +158,4 @@ app.get('/users', async (req, res) => {
 
 
 // ()
+// $
